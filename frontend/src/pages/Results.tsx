@@ -215,13 +215,13 @@ export default function Results() {
 <div className="mt-10 flex justify-end">
 
     <a
-        href={`http://127.0.0.1:8000/${data.pdf_report}`}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="bg-blue-600 hover:bg-blue-700 transition px-6 py-3 rounded-lg font-semibold"
-    >
-        📄 Download PDF Report
-    </a>
+    href={data.pdf_report}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="bg-blue-600 hover:bg-blue-700 transition px-6 py-3 rounded-lg font-semibold"
+>
+    📄 Download PDF Report
+</a>
 
 </div>
 

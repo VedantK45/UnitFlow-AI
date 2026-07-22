@@ -10,7 +10,7 @@ interface HistoryItem {
     total_tests: number;
     passed: number;
     failed: number;
-    pdf_path: string;
+    pdf_url: string;
 }
 
 export default function History() {
@@ -31,6 +31,16 @@ export default function History() {
             setLoading(false);
         }
     };
+    const formatDate = (date: string) => {
+    return new Date(date).toLocaleString("en-IN", {
+        day: "2-digit",
+        month: "short",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: true,
+    });
+};
 
     return (
         <Layout>
@@ -120,7 +130,7 @@ export default function History() {
                                     </p>
 
                                     <p className="text-slate-200">
-                                        {run.created_at}
+                                        {formatDate(run.created_at)}
                                     </p>
 
                                 </div>
@@ -171,14 +181,14 @@ export default function History() {
 
                                 <div className="flex justify-end mt-8">
 
-                                    <a
-                                        href={`http://127.0.0.1:8000/${run.pdf_path}`}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="bg-blue-600 hover:bg-blue-700 transition px-5 py-2 rounded-lg font-medium"
-                                    >
-                                        📄 View Report
-                                    </a>
+                                   <a
+                                    href={run.pdf_url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="bg-blue-600 hover:bg-blue-700 transition px-5 py-2 rounded-lg font-medium"
+                                >
+                                    📄 View Report
+                                </a>
 
                                 </div>
 

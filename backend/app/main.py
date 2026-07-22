@@ -12,6 +12,7 @@ from app.services.pdf_generator import generate_pdf
 from app.db_service import save_test_run, get_history,get_run_by_id,get_generated_tests,get_request_details,update_test_run
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
+from app.services.storage_service import upload_pdf
 
 # Create the FastAPI application
 app = FastAPI(
@@ -101,14 +102,16 @@ def run_tests(run_id: int):
     analysis
     )
 
+    pdf_url = upload_pdf(pdf_path)
+
     update_test_run(
-    run_id=run_id,
-    test_results=results,
-    passed=passed,
-    failed=failed,
-    average_latency=average_latency,
-    ai_summary=analysis["ai_report"],
-    pdf_path=pdf_path
+        run_id=run_id,
+        test_results=results,
+        passed=passed,
+        failed=failed,
+        average_latency=average_latency,
+        ai_summary=analysis["ai_report"],
+        pdf_path=pdf_url
     )
 
     return {
@@ -118,7 +121,7 @@ def run_tests(run_id: int):
     "average_latency": round(average_latency, 2),
     "results": results,
     "analysis": analysis,
-    "pdf_report": pdf_path
+    "pdf_report": pdf_url
 }
 
 @app.get("/history")
