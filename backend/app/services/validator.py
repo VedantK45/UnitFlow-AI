@@ -43,6 +43,13 @@ def validate_test(mutation, status_code):
     """
 
     expected = EXPECTED_STATUS.get(mutation, [])
+    if status_code is None:
+        return {
+            "pass": False,
+            "expected_status": expected,
+            "actual_status": None,
+            "reason": "Request could not be executed."
+        }
 
     passed = status_code in expected
 

@@ -11,6 +11,9 @@ uven/
 # Environment variables
 .env
 
+# Database
+*.db
+
 # VS Code
 .vscode/
 

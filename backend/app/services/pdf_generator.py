@@ -113,4 +113,4 @@ def generate_pdf(results, analysis):
 
     print("PDF saved at:", os.path.abspath(filename))
 
-    return os.path.abspath(filename)
+    return filename

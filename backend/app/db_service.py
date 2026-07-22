@@ -54,7 +54,8 @@ def get_history():
             method,
             total_tests,
             passed,
-            failed
+            failed,
+                   pdf_path      
         FROM test_runs
         ORDER BY run_id DESC
     """)

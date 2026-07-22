@@ -10,11 +10,22 @@ from app.services.validator import validate_test
 from app.services.ai_analyzer import analyze_results
 from app.services.pdf_generator import generate_pdf
 from app.db_service import save_test_run, get_history,get_run_by_id,get_generated_tests,get_request_details,update_test_run
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
+
 # Create the FastAPI application
 app = FastAPI(
     title="UnitFlow AI",
     description="AI-Powered API Testing Platform",
     version="1.0.0"
+)
+app.mount("/reports", StaticFiles(directory="reports"), name="reports")
+app.add_middleware(
+    CORSMiddleware,
+    allow_origin_regex=r"http://localhost:\d+",
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 
@@ -101,11 +112,14 @@ def run_tests(run_id: int):
     )
 
     return {
-        "total_tests": len(results),
-        "results": results,
-        "analysis": analysis,
-        "pdf_report": pdf_path
-    }
+    "total_tests": len(results),
+    "passed": passed,
+    "failed": failed,
+    "average_latency": round(average_latency, 2),
+    "results": results,
+    "analysis": analysis,
+    "pdf_report": pdf_path
+}
 
 @app.get("/history")
 def history():

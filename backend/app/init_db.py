@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS test_runs (
 
     run_id INTEGER PRIMARY KEY AUTOINCREMENT,
 
-    created_at DATETIME DEFAULT (datetime('now', '+5 hours', '+30 minutes'))
+    created_at DATETIME DEFAULT (datetime('now', '+5 hours', '+30 minutes')),
 
     api_url TEXT NOT NULL,
 
