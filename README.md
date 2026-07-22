@@ -1,6 +1,6 @@
 # 🚀 UnitFlow AI
 
-> **AI-Powered API Testing Platform with Automated Test Case Generation, Intelligent Analysis, Cloud Report Storage, and Modern Full-Stack Deployment**
+> **Intelligent API Testing Platform with Automated Test Case Generation, Intelligent Analysis, Cloud Report Storage, and Modern Full-Stack Deployment**
 
 ![React](https://img.shields.io/badge/React-19-blue)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5-blue)
