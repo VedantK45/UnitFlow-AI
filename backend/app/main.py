@@ -1,6 +1,5 @@
 import os
 
-print("Current Working Directory:", os.getcwd())
 
 from fastapi import FastAPI, HTTPException
 from app.models.request_models import APIRequest
@@ -11,7 +10,6 @@ from app.services.ai_analyzer import analyze_results
 from app.services.pdf_generator import generate_pdf
 from app.db_service import save_test_run, get_history,get_run_by_id,get_generated_tests,get_request_details,update_test_run
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.staticfiles import StaticFiles
 from app.services.storage_service import upload_pdf
 
 # Create the FastAPI application
@@ -20,9 +18,11 @@ app = FastAPI(
     description="AI-Powered API Testing Platform",
     version="1.0.0"
 )
-app.mount("/reports", StaticFiles(directory="reports"), name="reports")
 app.add_middleware(
     CORSMiddleware,
+    allow_origins=[
+        "http://localhost:5173",
+    ],
     allow_origin_regex=r"http://localhost:\d+",
     allow_credentials=True,
     allow_methods=["*"],
