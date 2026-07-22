@@ -22,6 +22,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:5173",
+        "https://unit-flow-ai.vercel.app"
     ],
     allow_origin_regex=r"http://localhost:\d+",
     allow_credentials=True,
